@@ -11,6 +11,36 @@
     <div class="typetester" id="tester">
 
       <div class="tester-control">
+
+        <div class="select" id="selectweight">
+
+        </div>
+
+        <div class="select" id="sizepicker">
+          <div class="dropdown-menu show" aria-labelledby="dropdownMenuPt" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 45px, 0px); top: 0px; left: 0px; will-change: transform;">
+           <div class="range-wrapper">
+              <div class="range-slider">
+                  <input type="range" class="prinz-rs__range input-range" name="rangeInputName" step="1" value="52" min="8" max="500" oninput="dynamicDisplayChange(this, &quot;head_1&quot;, &quot;33&quot;);">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="select" id="colorpicker">
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuBg">
+            <div class="colorpicker-wrapper">
+                <div class="color-picker color-pickerbg" style="display: none;"><div data-col="#ffffff" style="background-color: #ffffff"></div><div data-col="#E9D87A" style="background-color: #E9D87A"></div><div data-col="#2ecc71" style="background-color: #2ecc71"></div><div data-col="#134493" style="background-color: #134493"></div><div data-col="#A50823" style="background-color: #A50823"></div><div data-col="#4E577E" style="background-color: #4E577E"></div><div data-col="#000000" style="background-color: #000000"></div></div>
+            </div>
+            <a id="bgbutton" class="dropdown-item">„29“ by Peter Wolff</a>
+          </div>
+        </div>
+
+        <div class="select" id="changetext">
+          <a class="select-wrapper" id="dropdownMenuWiki" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Random Wikipedia Article</span></a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuWiki" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 45px, 0px);">
+            <a class="dropdown-item" href='javascript:switchSource("wiki");'>Random Wikipedia Article</a>
+          </div>
+        </div>
       </div>
 
       <div class="tester-text" contenteditable="true" spellcheck="false" id="font">
