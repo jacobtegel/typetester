@@ -11,51 +11,106 @@
     <div class="typetester" id="tester">
 
       <div class="tester-control">
-
+<!--
         <div class="select" id="selectweight">
 
         </div>
-
+-->
         <div class="select" id="sizepicker">
-          <label for="slider">Font Weight:</label>
-          <input type="range" class="slider " id="wght" min="10" max="500" step="1" value="100">
-          <input type="number" min="0" class="textbox" value="100">
+          <input id="size-value" type="number" max="500" min="10" value="100" step="1" source="[name=size]" />
+          <label>pt.<label>
+          <input name="size" type="range" max="500" min="10" value="100" step="1">
         </div>
-
+<!--
         <div class="select" id="colorpicker">
           <div class="colorpicker-wrapper">
             <div class="color-picker color-pickerbg" style="display: none;">
               <div data-col="#ffffff" style="background-color: #ffffff"></div>
-              <div data-col="#E9D87A" style="background-color: #E9D87A"></div>
-              <div data-col="#2ecc71" style="background-color: #2ecc71"></div>
-              <div data-col="#134493" style="background-color: #134493"></div>
-              <div data-col="#A50823" style="background-color: #A50823"></div>
-              <div data-col="#4E577E" style="background-color: #4E577E"></div>
               <div data-col="#000000" style="background-color: #000000"></div>
             </div>
           </div>
         </div>
-
+-->
+<!--
         <div class="select" id="changetext">
           <a>
             <span>Random Wikipedia Article</span>
           </a>
         </div>
       </div>
-
-      <div class="tester-text" contenteditable="true" spellcheck="false" id="font">
+-->
+      <div class="testfont" contenteditable="true" spellcheck="false" id="font">
         Sample Text goes here
       </div>
 
-      <style>
-        #font {
-          font-family: 'Familyname';
-          font-size: 100pt;
-          line-height: 115pt;
-         }
-      </style>
-
     </div>
+
+    <script type="text/javascript" charset="utf-8">
+/* verknüpft size slider und textbox */
+    ;(function(){
+
+function emit(target, name) {
+  var event
+  if (document.createEvent) {
+    event = document.createEvent("HTMLEvents");
+    event.initEvent(name, true, true);
+  } else {
+    event = document.createEventObject();
+    event.eventType = name;
+  }
+
+  event.eventName = name;
+
+  if (document.createEvent) {
+    target.dispatchEvent(event);
+  } else {
+    target.fireEvent("on" + event.eventType, event);
+  }
+}
+
+var outputsSelector = "input[type=number][source],select[source]";
+
+function onChange(e) {
+  var outputs = document.querySelectorAll(outputsSelector)
+  for (var index = 0; index < outputs.length; index++) {
+    var item = outputs[index]
+    var source = document.querySelector(item.getAttribute('source'));
+    if (source) {
+      if (item === e.target) {
+        source.value = item.value
+        emit(source, 'input')
+        emit(source, 'change')
+      }
+
+      if (source === e.target) {
+        item.value = source.value
+      }
+    }
+  }
+}
+
+document.addEventListener('change', onChange)
+document.addEventListener('input', onChange)
+}());
+
+
+/* verknüpft size slider mit test-text */
+/*
+$('input').on('change', function () {
+    var v = $(this).val();
+    $('div').css('font-size', v + 'px')
+    $('span').html(v);
+});
+*/
+
+document.getElementById('size-value').addEventListener('change', function(){
+  var v = $(this).val();
+  $('div').css('font-size', v + 'px')
+  $('span').html(v);
+});
+
+
+    </script>
 
   </body>
 </html>
