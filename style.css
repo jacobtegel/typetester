@@ -23,12 +23,17 @@
   top: 14px;
 }
 
+@font-face {
+  font-family: 'Thule';
+  src: url('Thule-RegularExpanded.woff') format('woff');
+}
+
 .testfont {
     /* background-color: none; */
     text-align: center;
     display: block;
 
-    font-family: 'Familyname';
+    font-family: 'Thule';
     font-size: 100pt;
     line-height: 120%;
     font-size: 100pt;
