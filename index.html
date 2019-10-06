@@ -8,6 +8,80 @@
   </head>
   <body>
 
+<style>
+
+.typetester {
+    display: block;
+    overflow: auto;
+    font-size: 10pt;
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: center;
+    border-bottom: 1px solid #fff;
+    padding-top: 25px;
+    padding-bottom: 50px
+}
+
+.select {
+  float: center;
+  margin: 5px;
+
+}
+
+.select .unit {
+  position:relative;
+  right:10px;
+  top: 14px;
+}
+
+@font-face {
+  font-family: 'Thule';
+  src: url('Thule-RegularExpanded.woff') format('woff');
+}
+
+.testfont {
+    /* background-color: none; */
+    text-align: center;
+    display: block;
+
+    font-family: 'Thule';
+    font-size: 48pt;
+    line-height: 120%;
+
+    border: none;
+    height: auto;
+    letter-spacing: 0;
+    margin: 0;
+    padding: 0;
+    width: -moz-calc(100%);
+    width: -webkit-calc(100%);
+    width: calc(100%);
+/*
+    -moz-font-feature-settings: "dlig=1";
+    -moz-font-feature-settings: "dlig";
+    -ms-font-feature-settings: "dlig";
+    -webkit-font-feature-settings: "dlig";
+    font-feature-settings: "dlig"
+
+*/
+}
+
+/*-----hides outline from focused elements-----*/
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+/*-----hides outline from typetester-div-----*/
+[contenteditable="true"]:focus {
+    outline: none;
+}
+
+</style>
+
     <div class="typetester" id="tester">
 
       <div class="tester-control">
