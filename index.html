@@ -11,16 +11,21 @@
     <div class="typetester" id="tester">
 
       <div class="tester-control">
+
 <!--
         <div class="select" id="selectweight">
 
         </div>
 -->
+
         <div class="select" id="sizepicker">
-          <input id="size-value" type="number" max="500" min="10" value="100" step="1" source="[name=size]" />
+
+          <input id="size-value" type="number" max="500" min="10" value="48" step="1" source="[name=size]" />
           <label>pt.<label>
-          <input name="size" type="range" max="500" min="10" value="100" step="1">
+
+          <input name="size" type="range" max="500" min="10" value="48" step="1" id="slider-size-value">
         </div>
+
 <!--
         <div class="select" id="colorpicker">
           <div class="colorpicker-wrapper">
@@ -46,7 +51,9 @@
     </div>
 
     <script type="text/javascript" charset="utf-8">
-/* verknüpft size slider und textbox */
+
+/* verknüpft size slider und size textbox */
+
     ;(function(){
 
 function emit(target, name) {
@@ -95,18 +102,13 @@ document.addEventListener('input', onChange)
 
 
 /* verknüpft size slider mit test-text */
-/*
-$('input').on('change', function () {
-    var v = $(this).val();
-    $('div').css('font-size', v + 'px')
-    $('span').html(v);
-});
-*/
 
-document.getElementById('size-value').addEventListener('change', function(){
-  var v = $(this).val();
-  $('div').css('font-size', v + 'px')
-  $('span').html(v);
+var slider = document.getElementById('slider-size-value');
+
+slider.addEventListener('input', function() {
+    var size = slider.value;
+    // this sets the element with the ID "font" 's font size property
+    document.getElementById("font").style.fontSize = size + "px";
 });
 
 
