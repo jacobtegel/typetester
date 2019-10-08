@@ -11,6 +11,7 @@
 <style>
 
 .typetester {
+    background-color: #fff;
     display: block;
     overflow: auto;
     font-size: 10pt;
@@ -18,9 +19,12 @@
     width: 100%;
     margin-bottom: 10px;
     text-align: center;
-    border-bottom: 1px solid #fff;
     padding-top: 25px;
     padding-bottom: 50px
+}
+
+.tester-control {
+  display: inline-flex;
 }
 
 .select {
@@ -41,7 +45,7 @@
 }
 
 .testfont {
-    /* background-color: none; */
+    background-color: inherit;
     text-align: center;
     display: block;
 
@@ -54,20 +58,113 @@
     letter-spacing: 0;
     margin: 0;
     padding: 0;
-    width: -moz-calc(100%);
-    width: -webkit-calc(100%);
-    width: calc(100%);
-/*
-    -moz-font-feature-settings: "dlig=1";
-    -moz-font-feature-settings: "dlig";
-    -ms-font-feature-settings: "dlig";
-    -webkit-font-feature-settings: "dlig";
-    font-feature-settings: "dlig"
-
-*/
 }
 
-/*-----hides outline from focused elements-----*/
+/*-----styles size number field-----*/
+
+.select input {
+width: 3ch;
+height: auto;
+line-height: 1.65;
+
+border: 0px  #000;
+
+padding-left: 20px;
+}
+
+.select input:focus {
+outline: 0;
+}
+
+/*-----styles range sider-----*/
+input[type=range] {
+  -webkit-appearance: none;
+  width: 10em;
+  margin: 6.5px 0;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 3px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  background: #000000;
+  border-radius: 25px;
+  border: 0px solid #010101;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid rgba(0, 0, 0, 0);
+  height: 16px;
+  width: 16px;
+  border-radius: 50px;
+  background: #0000ff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -6.5px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #0d0d0d;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 3px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  background: #000000;
+  border-radius: 25px;
+  border: 0px solid #010101;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid rgba(0, 0, 0, 0);
+  height: 16px;
+  width: 16px;
+  border-radius: 50px;
+  background: #0000ff;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 3px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #000000;
+  border: 0px solid #010101;
+  border-radius: 50px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range]::-ms-fill-upper {
+  background: #000000;
+  border: 0px solid #010101;
+  border-radius: 50px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range]::-ms-thumb {
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid rgba(0, 0, 0, 0);
+  height: 16px;
+  width: 16px;
+  border-radius: 50px;
+  background: #0000ff;
+  cursor: pointer;
+  height: 3px;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #000000;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #0d0d0d;
+}
+
+
+/*-----hides outline from focused elements entirely-----*/
 input:focus,
 select:focus,
 textarea:focus,
@@ -94,11 +191,12 @@ button:focus {
 
         <div class="select" id="sizepicker">
 
-          <input id="size-value" type="number" max="500" min="10" value="48" step="1" source="[name=size]" />
-          <label>pt.<label>
+          <input id="size-value" inputmode="numeric" max="500" min="8" value="48" step="1" source="[name=size]" />
+          <label id="select-label">pt.<label>
 
-          <input name="size" type="range" max="500" min="10" value="48" step="1" id="slider-size-value">
+          <input name="size" type="range" max="500" min="8" value="48" step="1" id="slider-size-value">
         </div>
+
 
 <!--
         <div class="select" id="colorpicker">
@@ -110,15 +208,45 @@ button:focus {
           </div>
         </div>
 -->
-<!--
+
         <div class="select" id="changetext">
-          <a>
-            <span>Random Wikipedia Article</span>
-          </a>
+          <button type="button" onclick="changeText()">Change Text</button>
         </div>
+
+        <script>
+        /*--- Change Text -----*/
+
+        var text = [
+          'The Owls are not what they seem.',
+          'Every day, once a day, give yourself a present. Don’t plan it, don’t wait for it, just let it happen.',
+          'There are things you can’t get anywhere — but we dream they can be found in other people.',
+          'Secrets are dangerous things.',
+          'How many times have we heard: \'it’s simple\'. Nothing is simple. We live in a world where nothing is simple. Each day, just when we think we have a handle on things, suddenly some new element is introduced and everything is complicated once again.',
+          'Sometimes — well, let’s say all times — things are changing.'
+        ];
+
+        var index = 1;
+
+        document.getElementById("changetext").onclick = function() {
+          document.getElementById("testfont-area").innerHTML = text[Math.floor(Math.random() * text.length)];
+        };
+
+/*
+for (var a = [0, 1, 2, 3, 4], i = a.length; i--; ) {
+    var random = a.splice(Math.floor(Math.random() * (i + 1)), 1)[0];
+    console.log(random);
+}
+*/
+/*
+        function changeText() {
+          document.getElementById("testfont-area").innerHTML = text[index++ % text.length]
+        };
+*/
+        </script>
+
       </div>
--->
-      <div class="testfont" contenteditable="true" spellcheck="false" id="font">
+
+      <div class="testfont" contenteditable="true" spellcheck="false" id="testfont-area">
         Sample Text goes here
       </div>
 
@@ -149,7 +277,7 @@ function emit(target, name) {
   }
 }
 
-var outputsSelector = "input[type=number][source],select[source]";
+var outputsSelector = "input[inputmode=numeric][source],select[source]";
 
 function onChange(e) {
   var outputs = document.querySelectorAll(outputsSelector)
@@ -181,9 +309,10 @@ var slider = document.getElementById('slider-size-value');
 
 slider.addEventListener('input', function() {
     var size = slider.value;
-    // this sets the element with the ID "font" 's font size property
-    document.getElementById("font").style.fontSize = size + "px";
+    // this sets the element with the ID "testfont-area" 's font size property
+    document.getElementById("testfont-area").style.fontSize = size + "px";
 });
+
 
 
     </script>
