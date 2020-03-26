@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Typetester</title>
+  <link rel="stylesheet" href="style.css" type="text/css">
+  </head>
+  <body>
+
+    <style>
+
+    @font-face {
+      font-family: 'Thule';
+      src: url('http://jacobtegel.com/wp-28301-content/uploads/2019/12/Thule-RegularExpanded.woff') format('woff');
+    }
+
+    @font-face{
+        font-family: 'Suisse-Regular';
+        src: url('http://jacobtegel.com/wp-28301-content/uploads/2020/02/SuisseIntl-Regular-WebXL.ttf');
+    }
+
+    .typetester {
+        background-color: #00f;
+
+        font-family: 'Thule';
+        color: #fff;
+
+        display: block;
+        overflow: break-word;
+        font-size: 12pt;
+        position: relative;
+        width: 100%;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        margin-right: 0px!important;
+        text-align: center;
+        padding: 20px 0 0 0;
+
+    /*
+        border: 3px solid #00f;
+        border-radius: 30px;
+    */
+
+    }
+
+    .tester-control {
+      display: inline-flex;
+      font-family: 'Suisse-Regular';
+      background-color: #fff;
+      border: 3px solid #00f;
+      border-radius: 50px;
+      margin-bottom: 20px;
+      padding: 5px;
+
+
+    }
+
+    .select {
+      float: center;
+      margin: 10px;
+
+
+    }
+
+    /*
+    .select .unit {
+      position:relative;
+      right:10px;
+      top: 14px;
+
+    }
+    */
+
+    .testfont {
+        background-color: inherit;
+        text-align: center;
+        display: block;
+
+        font-family: 'Thule';
+        font-size: 48pt;
+        line-height: 120%;
+
+        border: none;
+        height: auto;
+        letter-spacing: 0;
+        margin: 0;
+        padding: 20px 10px 50px 10px;
+    }
+
+    /*-----selected text will be blue on white*/
+    .testfont::moz-selection {
+      color: #00F;
+      background: #FFF;
+    }
+
+    .testfont::selection {
+      color: #00F;
+      background: #FFF;
+    }
+
+    /*-----styles size select-----*/
+
+    .select input {
+    width: 3ch;
+    height: auto;
+    line-height: 1.65;
+    font-size: 12pt;
+
+    border: 0px  #000;
+
+    padding-left: 20px;
+    padding-top: 5px;
+
+    vertical-align: center;
+    }
+
+    .select input:focus {
+    outline: 0;
+    }
+
+    size-value-numeric {
+
+        line-height: 3em;
+        text-align: center;
+    }
+
+    /*-----styles range sider-----*/
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 10em;
+      margin: 6.5px 0;
+    }
+    input[type=range]:focus {
+      outline: none;
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 3px;
+      cursor: pointer;
+      box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+      background: #000000;
+      border-radius: 25px;
+      border: 0px solid #010101;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+      border: 0px solid rgba(0, 0, 0, 0);
+      height: 16px;
+      width: 16px;
+      border-radius: 50px;
+      background: #0000ff;
+      cursor: pointer;
+      -webkit-appearance: none;
+      margin-top: -6.5px;
+    }
+    input[type=range]:focus::-webkit-slider-runnable-track {
+      background: #0d0d0d;
+    }
+    input[type=range]::-moz-range-track {
+      width: 100%;
+      height: 3px;
+      cursor: pointer;
+      box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+      background: #000000;
+      border-radius: 25px;
+      border: 0px solid #010101;
+    }
+    input[type=range]::-moz-range-thumb {
+      box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+      border: 0px solid rgba(0, 0, 0, 0);
+      height: 16px;
+      width: 16px;
+      border-radius: 50px;
+      background: #0000ff;
+      cursor: pointer;
+    }
+    input[type=range]::-ms-track {
+      width: 100%;
+      height: 3px;
+      cursor: pointer;
+      background: transparent;
+      border-color: transparent;
+      color: transparent;
+    }
+    input[type=range]::-ms-fill-lower {
+      background: #000000;
+      border: 0px solid #010101;
+      border-radius: 50px;
+      box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+    }
+    input[type=range]::-ms-fill-upper {
+      background: #000000;
+      border: 0px solid #010101;
+      border-radius: 50px;
+      box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+    }
+    input[type=range]::-ms-thumb {
+      box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+      border: 0px solid rgba(0, 0, 0, 0);
+      height: 16px;
+      width: 16px;
+      border-radius: 50px;
+      background: #0000ff;
+      cursor: pointer;
+      height: 3px;
+    }
+    input[type=range]:focus::-ms-fill-lower {
+      background: #000000;
+    }
+    input[type=range]:focus::-ms-fill-upper {
+      background: #0d0d0d;
+    }
+
+    /*-----styles button-----*/
+
+    button {
+    	background-color: #00f;
+      box-shadow: none;
+      border: none;
+      outline: none;
+    	border-radius: 30px;
+    	display: inline-block;
+    	cursor: pointer;
+    	color: #fff;
+    	font-family:inherit;
+    	font-size: inherit;
+    	padding: 10px 20px;
+    	text-decoration:none;
+    }
+
+    button:hover {
+
+    }
+
+    button:active {
+      background-color :#fff;
+      color: #00f;
+    }
+
+    /*-----hides outline from focused elements entirely-----*/
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus {
+        outline: none;
+    }
+
+    /*-----hides dotted outline around range slider in firefox-----*/
+    input[type=range]::-moz-focus-outer {
+        border: 0;
+        }
+
+    /*-----hides outline from typetester-div-----*/
+    [contenteditable="true"]:focus {
+        outline: none;
+    }
+
+    </style>
+
+        <div class="typetester" id="tester">
+
+          <div class="tester-control">
+
+            <div class="select" id="sizepicker">
+
+              <input name="size" type="range" max="500" min="8" value="48" step="1" id="slider-size-value">
+            </div>
+
+            <div class="select" id="changetext">
+              <button type="button" onclick="changeText()">Change Text</button>
+            </div>
+
+            <script>
+            /*--- Change Text -----*/
+
+            var text = [
+              'The Owls are not what they seem.',
+              'Every day, once a day, give yourself a present. Don’t plan it, don’t wait for it, just let it happen.',
+              'Some people never go crazy.',
+              'Secrets are dangerous things.',
+              'Elon Musk @elonmusk · 28. Jan. <br>Chairs are underappreciated',
+              'With its rover named Curiosity, Mars Science Laboratory mission is part of NASA’s Mars Exploration Program, a long-term effort of robotic exploration of the red planet. Curiosity was designed to assess whether Mars ever had an environment able to support small life forms called microbes. In other words, its mission is to determine the planet’s “habitability.”'
+
+            ];
+
+            var index = 1;
+
+            document.getElementById("changetext").onclick = function() {
+              document.getElementById("testfont-area").innerHTML = text[Math.floor(Math.random() * text.length)];
+            };
+
+            </script>
+
+          </div>
+
+          <div class="testfont" contenteditable="true" spellcheck="false" id="testfont-area">
+            Sample Text goes here
+          </div>
+
+        </div>
+
+        <script type="text/javascript" charset="utf-8">
+
+    /* verknüpft size slider und size textbox */
+
+        ;(function(){
+
+    function emit(target, name) {
+      var event
+      if (document.createEvent) {
+        event = document.createEvent("HTMLEvents");
+        event.initEvent(name, true, true);
+      } else {
+        event = document.createEventObject();
+        event.eventType = name;
+      }
+
+      event.eventName = name;
+
+      if (document.createEvent) {
+        target.dispatchEvent(event);
+      } else {
+        target.fireEvent("on" + event.eventType, event);
+      }
+    }
+
+    var outputsSelector = "input[inputmode=numeric][source],select[source]";
+
+    function onChange(e) {
+      var outputs = document.querySelectorAll(outputsSelector)
+      for (var index = 0; index < outputs.length; index++) {
+        var item = outputs[index]
+        var source = document.querySelector(item.getAttribute('source'));
+        if (source) {
+          if (item === e.target) {
+            source.value = item.value
+            emit(source, 'input')
+            emit(source, 'change')
+          }
+
+          if (source === e.target) {
+            item.value = source.value
+          }
+        }
+      }
+    }
+
+    document.addEventListener('change', onChange)
+    document.addEventListener('input', onChange)
+    }());
+
+
+    /* verknüpft size slider mit test-text */
+
+    var slider = document.getElementById('slider-size-value');
+
+    slider.addEventListener('input', function() {
+        var size = slider.value;
+        // this sets the element with the ID "testfont-area" 's font size property
+        document.getElementById("testfont-area").style.fontSize = size + "px";
+    });
+
+
+
+        </script>
+
+  </body>
+</html>
