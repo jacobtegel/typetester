@@ -34,7 +34,7 @@
     padding-bottom: 50px
 }
 
-.tester-control {
+.testerControl {
   display: inline-flex;
   background-color: #fff;
   color: #00f;
@@ -224,22 +224,22 @@ button:focus {
 
     <div class="typetester" id="tester">
 
-      <div class="tester-control">
+      <div class="testerControl">
 
         <div class="select" id="sizepicker">
 
-          <input id="size-value" inputmode="numeric" max="500" min="8" value="48" step="1" source="[name=size]" />
+          <input id="sizeValue" inputmode="numeric" max="500" min="8" value="48" step="1" source="[name=size]" />
           <label id="select-label">pt.<label>
 
-          <input name="size" type="range" max="500" min="8" value="48" step="1" id="slider-size-value">
+          <input name="size" type="range" max="500" min="8" value="48" step="1" id="sliderSizeValue">
         </div>
 
-        <div class="select" id="changetext">
+        <div class="select" id="changeText">
           <button type="button" onclick="changeText()">Change Text</button>
         </div>
 
         <script>
-        /*--- Change Text -----*/
+        /*--- Change Text & Randomize Size -----*/
 
         var text = [
           'The Owls are not what they seem.',
@@ -250,17 +250,27 @@ button:focus {
           'Sometimes — well, let’s say all times — things are changing.'
         ];
 
-        var index = 1;
+        document.getElementById("changeText").onclick = function() {
+          document.getElementById("testfontArea").innerHTML = text[Math.floor(Math.random() * text.length)];
 
-        document.getElementById("changetext").onclick = function() {
-          document.getElementById("testfont-area").innerHTML = text[Math.floor(Math.random() * text.length)];
+          function getRandomIntInclusive(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+          }
+
+          var randomSize = getRandomIntInclusive(8, 150);
+
+          document.getElementById("sizeValue").value = randomSize;
+          document.getElementById("sliderSizeValue").value = randomSize;
+          document.getElementById("testfontArea").style.fontSize = randomSize + "pt";
         };
 
         </script>
 
       </div>
 
-      <div class="testfont" contenteditable="true" spellcheck="false" id="testfont-area">
+      <div class="testfont" contenteditable="true" spellcheck="false" id="testfontArea">
         Sample Text goes here
       </div>
 
@@ -319,12 +329,12 @@ document.addEventListener('input', onChange)
 
 /* verknüpft size slider mit test-text */
 
-var slider = document.getElementById('slider-size-value');
+var slider = document.getElementById('sliderSizeValue');
 
 slider.addEventListener('input', function() {
     var size = slider.value;
-    // this sets the element with the ID "testfont-area"'s font size property
-    document.getElementById("testfont-area").style.fontSize = size + "pt";
+    // this sets the element with the ID "testfontArea"'s font size property
+    document.getElementById("testfontArea").style.fontSize = size + "pt";
 });
 
 
